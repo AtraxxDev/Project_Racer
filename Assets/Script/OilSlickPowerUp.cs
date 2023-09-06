@@ -31,6 +31,7 @@ public class OilSlickPowerUp : MonoBehaviour
                     carController.slowParticles1.Play();
                     carController.slowParticles2.Play();
 
+                   
                     // Puedes agregar efectos adicionales aquí, como partículas de aceite o sonidos de derrape.
                 }
                 else

@@ -24,8 +24,8 @@ public class CarController : MonoBehaviour
     public float maxWheelTurn = 25f;
 
     // Power Up 
-    [SerializeField]private bool isBoosting = false;
-    [SerializeField]private bool isSlowed = false;
+    [SerializeField]public bool isBoosting = false;
+    [SerializeField]public bool isSlowed = false;
     private float boostTimer = 0f;
     private float slowedTimer = 0f;
     public ParticleSystem nitroParticles1;
@@ -114,7 +114,7 @@ public class CarController : MonoBehaviour
             slowedTimer -= Time.deltaTime;
             if (slowedTimer <= 0)
             {
-                // Restablece la velocidad original y desactiva el estado de aumento de velocidad.
+                // Restablece la velocidad original y desactiva el estado de diminucion de velocidad.
                 forwardAccel = originalForwardAccel;
                 Debug.Log("Exit slowed");
                 isSlowed = false;
