@@ -25,9 +25,13 @@ public class CarController : MonoBehaviour
 
     // Power Up 
     [SerializeField]private bool isBoosting = false;
+    [SerializeField]private bool isSlowed = false;
     private float boostTimer = 0f;
+    private float slowedTimer = 0f;
     public ParticleSystem nitroParticles1;
     public ParticleSystem nitroParticles2;
+    public ParticleSystem slowParticles1;
+    public ParticleSystem slowParticles2;
 
 
 
@@ -104,6 +108,23 @@ public class CarController : MonoBehaviour
             }
         }
 
+        // Actualiza el temporizador del power-up.
+        if (isSlowed)
+        {
+            slowedTimer -= Time.deltaTime;
+            if (slowedTimer <= 0)
+            {
+                // Restablece la velocidad original y desactiva el estado de aumento de velocidad.
+                forwardAccel = originalForwardAccel;
+                Debug.Log("Exit slowed");
+                isSlowed = false;
+                slowParticles1.Stop();
+                slowParticles2.Stop();
+                
+            }
+        }
+
+
 
     }
 
@@ -140,6 +161,15 @@ public class CarController : MonoBehaviour
     {
         isBoosting = true;
         boostTimer = duration;
+        // Aplica el aumento de velocidad.
+        forwardAccel += amount;
+    }
+
+
+    public void ApplySpeedSlowed(float amount, float duration)
+    {
+        isSlowed = true;
+        slowedTimer = duration;
         // Aplica el aumento de velocidad.
         forwardAccel += amount;
     }
