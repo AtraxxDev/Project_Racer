@@ -5,8 +5,8 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     public Rigidbody sphererb;
-
-    public float forwardAccel = 8f,reverseAccel = 4f,maxSpeed = 50f, turnStrenght = 100 , gravityForce = 10f, dragOnGround = 3f;
+    private float originalForwardAccel;
+    public float forwardAccel = 8f,reverseAccel = 4f, turnStrenght = 100 , gravityForce = 10f, dragOnGround = 3f;
     
     private float speedInput, turnInput;
 
@@ -23,9 +23,18 @@ public class CarController : MonoBehaviour
     public Transform leftFrontWheel, rightFrontWheel;
     public float maxWheelTurn = 25f;
 
+    // Power Up 
+    [SerializeField]private bool isBoosting = false;
+    private float boostTimer = 0f;
+    public ParticleSystem nitroParticles1;
+    public ParticleSystem nitroParticles2;
+
+
+
     void Start()
     {
         sphererb.transform.parent = null;
+        originalForwardAccel = forwardAccel;
     }
 
     void Update()
@@ -79,6 +88,23 @@ public class CarController : MonoBehaviour
             sphererb.AddForce(driftForce);
         }
 
+
+        // Actualiza el temporizador del power-up.
+        if (isBoosting)
+        {
+            boostTimer -= Time.deltaTime;
+            if (boostTimer <= 0)
+            {
+                // Restablece la velocidad original y desactiva el estado de aumento de velocidad.
+                forwardAccel = originalForwardAccel;
+                Debug.Log("Exit Boost");
+                isBoosting = false;
+                nitroParticles1.Stop();
+                nitroParticles2.Stop();
+            }
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -108,4 +134,14 @@ public class CarController : MonoBehaviour
            sphererb.AddForce(Vector3.up * -gravityForce * 100f);
         }
     }
+
+
+    public void ApplySpeedBoost(float amount, float duration)
+    {
+        isBoosting = true;
+        boostTimer = duration;
+        // Aplica el aumento de velocidad.
+        forwardAccel += amount;
+    }
+
 }
