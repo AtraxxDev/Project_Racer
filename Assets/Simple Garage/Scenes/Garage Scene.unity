@@ -352,7 +352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169217861}
   - component: {fileID: 169217862}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: PlayerMinimap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,8 +725,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100, y: 101}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -75.1, y: 74}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &221267529
 MonoBehaviour:
@@ -3363,7 +3363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 600048768}
   - component: {fileID: 600048769}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: PlayerMinimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4594,7 +4594,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1015
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
